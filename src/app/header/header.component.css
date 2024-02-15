@@ -1,0 +1,22 @@
+/* Style général pour le header */
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 10px 20px; /* Ajout de padding à gauche et à droite */
+  text-align: center;
+  font-size: 24px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Ajout d'une légère ombre */
+}
+
+/* Style pour le titre */
+header h1 {
+  margin: 0; /* Suppression de la marge par défaut */
+}
+
+/* Media Queries pour rendre le header plus petit sur les petits écrans */
+@media screen and (max-width: 768px) {
+  header {
+    padding: 10px; /* Réduction du padding */
+    font-size: 20px; /* Réduction de la taille de police */
+  }
+}
