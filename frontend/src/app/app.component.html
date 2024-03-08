@@ -1,12 +1,14 @@
 <app-header></app-header>
+<app-catalogue></app-catalogue>
 @if (!recap){
+
 <app-form (formData)="receiveFormData($event)" (submitButtonClick)="handleFormSubmit()"></app-form>
 }
 @else {
     <app-summary [formData]="formData"></app-summary>
     <div class="button-container">
         <button (click)="click()">Retour</button>
-      </div>
+    </div>
 }
 
 <app-footer></app-footer>

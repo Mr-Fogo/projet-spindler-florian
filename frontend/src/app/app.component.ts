@@ -8,6 +8,8 @@ import { SummaryComponent } from './summary/summary.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CatalogueComponent } from './catalogue/catalogue.component';
+
 
 @Component({
     selector: 'app-root',
@@ -23,13 +25,15 @@ import { ReactiveFormsModule } from '@angular/forms';
       FormsModule,
       ReactiveFormsModule,
       FormComponent,
-      SummaryComponent
+      SummaryComponent,
+      CatalogueComponent
     ]
 })
 export class AppComponent {
-  title = 'TP2'
+  title = 'test'
   recap = false;
   formData: any = {};
+  showCatalogue: boolean = true;
   receiveFormData(formData: any){
     this.formData = formData;
   }
@@ -39,4 +43,5 @@ export class AppComponent {
   click(){
     this.recap = false;
   }
+
 }
