@@ -12,7 +12,10 @@ export class ApiService {
   constructor(private http: HttpClient) {}
 
   public getAlbums(searchTerm: string = ''): Observable<Album[]> {
-
-    return this.http.get<Album[]>(environment.backendClient);
+    let params = new HttpParams();
+    if (searchTerm) {
+      params = params.set('searchTerm', searchTerm);
+    }
+    return this.http.get<Album[]>(environment.backendClient, { params });
   }
 }

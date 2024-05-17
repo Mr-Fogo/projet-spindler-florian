@@ -1,3 +1,4 @@
 <div>
-    <input type="text" placeholder="Search" (input)="onSearchChange($event)">
+    <input (input)="onSearchChange($event)" placeholder="Search for an album" />
+    <button (click)="onSearchClick()">Search</button>
 </div>

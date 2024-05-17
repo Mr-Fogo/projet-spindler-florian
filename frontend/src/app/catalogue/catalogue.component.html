@@ -1,14 +1,14 @@
-<app-searchbar (searchEvent)="getByName($event)" ></app-searchbar>
-  
+<app-searchbar (searchEvent)="getByName($event)"></app-searchbar>
+
 <div *ngIf="(albums | async) as albumsData" class="album-container">
-    <div class="album" *ngFor="let album of albumsData">
-      <img [src]="album.image" alt="{{ album.nom }}">
-      <div class="album-details">
-        <h3>{{ album.nom }}</h3>
-        <p>{{ album.auteur }}</p>
-        <p>{{ album.genre }}</p>
-        <p>{{ album.prix }} €</p>
-        <p>{{ album.nbTitre }} titres</p>
-      </div>
+  <div class="album" *ngFor="let album of albumsData">
+    <img [src]="album.image" alt="{{ album.nom }}">
+    <div class="album-details">
+      <h3>{{ album.nom }}</h3>
+      <p>{{ album.auteur }}</p>
+      <p>{{ album.genre }}</p>
+      <p>{{ album.prix }} €</p>
+      <p>{{ album.nbTitre }} titres</p>
     </div>
   </div>
+</div>

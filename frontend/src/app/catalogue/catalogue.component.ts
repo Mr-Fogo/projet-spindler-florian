@@ -16,8 +16,7 @@ import { SearchBarComponent } from '../searchbar/searchbar.component';
 export class CatalogueComponent implements OnInit {
 
   albums!: Observable<Album[]>;
-  searchQuery!: string;
-  
+  searchQuery: string = '';
 
   constructor(private apiService: ApiService) { }
 
@@ -30,10 +29,8 @@ export class CatalogueComponent implements OnInit {
   }
 
   getByName(event: string) {
-    this.searchQuery = event.toLowerCase(); 
-    console.log(this.searchQuery)
-    this.albums = this.albums.pipe(
-      map(albums => albums.filter(album => album.nom.toLowerCase().includes(this.searchQuery)))
-    );
+    this.searchQuery = event.toLowerCase();
+    console.log(this.searchQuery);
+    this.albums = this.apiService.getAlbums(this.searchQuery);
   }
 }
