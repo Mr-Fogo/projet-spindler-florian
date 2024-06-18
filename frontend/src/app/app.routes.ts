@@ -4,6 +4,7 @@ import { CatalogueComponent } from './catalogue/catalogue.component';
 import { FormComponent } from './form/form.component';
 import { SummaryComponent } from './summary/summary.component';
 import { CartComponent } from './cart/cart.component';
+import { LoginComponent } from './login/login.component';
 
 
 
@@ -14,6 +15,7 @@ export const routes: Routes = [
   { path: 'profil', component: SummaryComponent },
   { path: '', redirectTo: '/catalogue', pathMatch: 'full' },
   { path: 'panier', component: CartComponent },
+  { path: 'login', component: LoginComponent}
   
 
 ];

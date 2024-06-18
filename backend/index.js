@@ -1,28 +1,33 @@
-const catalogue = require('./album.json');
+const express = require("express");
+const cors = require("cors");
 
-const app = require('express')();
-const port = 3000;
+const app  = express ();
 
-var cors = require('cors');
+const corsOptions = {
+  origin: "*",
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  headers: 'Content-Type, Authorization',
+  exposedHeaders:'Authorization'
+};
 
-// use it before all route definitions
-app.use(cors({origin: 'http://localhost:4200'}));
+app.use(cors(corsOptions));
 
-app.listen(port, () => {
-    console.log('Server is running');
-    });
+// parse requests of content-type - application/json
+app.use(express.json());
+
+// parse requests of content-type - application/x-www-form-urlencoded
+app.use(express.urlencoded({ extended: true }));
 
 
-app.get('/album', (req, res) => {
-    const searchTerm = req.query.searchTerm;
-    console.log(searchTerm);
-    if (searchTerm) {
-        const filteredCatalogue = catalogue.filter(album => 
-            (album.nom && album.nom.toLowerCase().includes(searchTerm.toLowerCase())) ||
-            (album.auteur && album.auteur.toLowerCase().includes(searchTerm.toLowerCase()))
-        );
-        res.json(filteredCatalogue);
-    } else {
-        res.json(catalogue);
-    }
+require("./routes/catalogue.routes")(app);
+require("./routes/utilisateur.routes")(app);
+
+
+
+// set port, listen for requests
+const PORT =  3000;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}.`);
 });
+
+

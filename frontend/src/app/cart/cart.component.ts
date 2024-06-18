@@ -29,7 +29,7 @@ export class CartComponent {
   });
 }
 removeProduct(productId: number) {
-  console.log(productId);
+  console.log('removeProduct', productId);
   this.store.dispatch(new SupprimerProduit(productId));
 }
 }

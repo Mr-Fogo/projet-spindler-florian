@@ -28,4 +28,5 @@ export class FormComponent {
   {
     return this.formDataModel.password === this.formDataModel.confirmPassword
   }
+  
 }

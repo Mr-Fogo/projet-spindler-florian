@@ -10,7 +10,7 @@ export interface PanierStateModel {
 @State<PanierStateModel>({
   name: 'panier',
   defaults: {
-    produits: []
+    produits: [],
   }
 })
 @Injectable()
@@ -37,10 +37,10 @@ export class PanierState {
     @Action(AjouterProduit)
     ajouterProduit(ctx: StateContext<PanierStateModel>, action: AjouterProduit) {
         const state = ctx.getState();
-        console.log(action.album);
         const baseProduct: BaseProduct = {
             product: action.album,
-            quantite: 1
+            quantite: 1,
+            id: state.produits.length + 1
         };
 
         ctx.patchState({
@@ -51,14 +51,15 @@ export class PanierState {
     @Action(SupprimerProduit)
     supprimerProduit(ctx: StateContext<PanierStateModel>, action: SupprimerProduit) {
         const state = ctx.getState();
-        const productToRemove = state.produits.find(product => product.product.id === action.id)?.product;
+        const productToRemove = state.produits.find(product => product.id === action.id)?.product;
         ctx.patchState({
-          produits: state.produits.filter(product => product.product.id !== action.id)
+          produits: state.produits.filter(product => product.id !== action.id)
         })
     }
 
     @Action(ClearPanier)
     clearBasket(ctx: StateContext<PanierStateModel>){
+        const state = ctx.getState();
         ctx.setState({ produits: []});
     }
 }

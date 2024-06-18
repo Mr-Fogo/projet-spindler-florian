@@ -10,7 +10,7 @@
         <p><strong>Genre:</strong> {{ produit.product.genre }}</p>
         <p><strong>Nombre de Titres:</strong> {{ produit.product.nbTitre }}</p>
         <p><strong>Prix:</strong> {{ produit.product.prix | currency:'EUR':'symbol' }}</p>
-        <button (click)="removeProduct(produit.product.id)">Remove</button>
+        <button (click)="removeProduct(produit.id)">Remove</button>
       </div>
     </div>
     <div class="cart-summary">
