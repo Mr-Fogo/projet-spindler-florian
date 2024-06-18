@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, NgModule } from '@angular/core';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { BodyComponent } from './body/body.component';
@@ -11,6 +11,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CatalogueComponent } from './catalogue/catalogue.component';
 
 
+
+
 @Component({
     selector: 'app-root',
     standalone: true,
@@ -18,6 +20,8 @@ import { CatalogueComponent } from './catalogue/catalogue.component';
     styleUrl: './app.component.css',
     imports: [CommonModule, 
       RouterOutlet,
+      RouterLink,
+      RouterLinkActive,
       FooterComponent,
       HeaderComponent,
       BodyComponent,
@@ -30,18 +34,6 @@ import { CatalogueComponent } from './catalogue/catalogue.component';
     ]
 })
 export class AppComponent {
-  title = 'test'
-  recap = false;
-  formData: any = {};
-  showCatalogue: boolean = true;
-  receiveFormData(formData: any){
-    this.formData = formData;
-  }
-  handleFormSubmit() {
-    this.recap = true;
-  }
-  click(){
-    this.recap = false;
-  }
+  title = "J'aime pas Angular";
 
 }

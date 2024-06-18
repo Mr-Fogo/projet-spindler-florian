@@ -1,0 +1,23 @@
+<!-- cart.component.html -->
+<div class="cart-container">
+    <div *ngFor="let produit of produits$ | async" class="cart-item">
+      <div class="cart-item-image" *ngIf="produit.product.image">
+        <img [src]="produit.product.image" alt="{{produit.product.nom}}" />
+      </div>
+      <div class="cart-item-details">
+        <h3>{{ produit.product.nom }}</h3>
+        <p><strong>Auteur:</strong> {{ produit.product.auteur }}</p>
+        <p><strong>Genre:</strong> {{ produit.product.genre }}</p>
+        <p><strong>Nombre de Titres:</strong> {{ produit.product.nbTitre }}</p>
+        <p><strong>Prix:</strong> {{ produit.product.prix | currency:'EUR':'symbol' }}</p>
+        <button (click)="removeProduct(produit.product.id)">Remove</button>
+      </div>
+    </div>
+    <div class="cart-summary">
+      <h2>Total</h2>
+      <p><strong>Prix Total:</strong> {{ prixTotal$ | async | currency:'EUR':'symbol' }}</p>
+      <p><strong>Nombre de Produits:</strong> {{ nombreProduitDansPanier$ | async }}</p>
+      <button (click)="displayThankYouMessage()">Purchase</button>
+      <p *ngIf="showThankYouMessage" class="thank-you-message">Thank you for your purchase</p>
+    </div>
+  </div>
