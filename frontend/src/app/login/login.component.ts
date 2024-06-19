@@ -1,3 +1,5 @@
+// login.component.ts
+
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -9,7 +11,7 @@ import { ApiService } from '../api.service';
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
   login: string = '';
@@ -20,8 +22,7 @@ export class LoginComponent {
   cnx: boolean = false;
   error: string = '';
 
-  public constructor(private apiService: ApiService, private router:Router) {
-  }
+  public constructor(private apiService: ApiService, private router: Router) { }
 
   onSubmit(): void {
     this.apiService.loginClient(this.login, this.password).subscribe(
@@ -32,18 +33,17 @@ export class LoginComponent {
 
         console.log('Login response: ', response);
         this.router.navigateByUrl('/catalogue');
-    },
-    (error) => {
-      this.error = "Erreur de connexion ! Veuillez vérifier vos identifiants."
-      console.log('Login error: ', error);
-    }
-  );
+      },
+      (error) => {
+        this.error = "Erreur de connexion ! Veuillez vérifier vos identifiants.";
+        console.log('Login error: ', error);
+      }
+    );
   }
 
   isConnect(): boolean {
     return this.cnx;
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 }

@@ -24,7 +24,7 @@ app.use(express.urlencoded({ extended: true }));
 require("./routes/catalogue.routes")(app);
 require("./routes/utilisateur.routes")(app);
 
-sequelize.sync({ force : true})
+sequelize.sync({ alter : true})
 .then(()=> console.log("Database created")).catch((e)=> console.error(e));
 
 

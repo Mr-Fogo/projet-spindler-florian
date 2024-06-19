@@ -1,19 +1,25 @@
-const catalogue = require('../album.json');
+const { Album } = require("../database");
 
-exports.get = (req, res) => {
+exports.get = async (req, res) => {
     const searchTerm = req.query.searchTerm;
-    if (searchTerm) 
-    {
-        const filteredCatalogue = catalogue.filter(album => 
-            (album.nom && album.nom.toLowerCase().includes(searchTerm.toLowerCase())) ||
-            (album.auteur && album.auteur.toLowerCase().includes(searchTerm.toLowerCase()))
-        );
-        res.json(filteredCatalogue);
-    } 
-    else 
-    {
-        res.json(catalogue);
+    try {
+        let albums;
+        if (searchTerm) {
+            albums = await Album.findAll({
+                where: {
+                    [Op.or]: [
+                        { nom: { [Op.like]: `%${searchTerm}%` } },
+                        { auteur: { [Op.like]: `%${searchTerm}%` } }
+                    ]
+                }
+            });
+        } else {
+            albums = await Album.findAll();
+        }
+        res.json(albums);
+    } catch (error) {
+        res.status(500).send({
+            message: "Erreur lors de la récupération des albums"
+        });
     }
 };
-
-

@@ -6,6 +6,7 @@ export const environment = {
     //backendCatalogue: '/api/catalogue',
     //backendRegister: '/api/auth/register',
     backendClient : '/api/album',
+    backendClientInfo : '/api/utilisateur/info',
     backendLoginClient: '/api/utilisateur/login',
     backendRegisterClient: '/api/utilisateur/register'
 };

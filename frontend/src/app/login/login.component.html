@@ -1,5 +1,12 @@
-<label for="login">login : </label><input [(ngModel)]="login" /><br />
-<label for="password">password : </label
-><input [(ngModel)]="password" type="password" /><br />
-<br />
-<button (click)="onSubmit()">Connexion</button>
+<!-- login.component.html -->
+
+<div class="login-container">
+    <h2>Connexion</h2>
+    <label for="login">Login :</label>
+    <input [(ngModel)]="login" name="login" id="login" />
+    <label for="password">Password :</label>
+    <input [(ngModel)]="password" type="password" name="password" id="password" />
+    <button (click)="onSubmit()">Connexion</button>
+    <div *ngIf="error" class="error-message">{{ error }}</div>
+  </div>
+  

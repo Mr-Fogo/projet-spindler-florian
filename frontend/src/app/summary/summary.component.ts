@@ -1,4 +1,6 @@
 import { Component,Input } from '@angular/core';
+import { ApiService } from '../api.service';
+import { Client } from '../models/client';
 
 @Component({
   selector: 'app-summary',
@@ -8,5 +10,13 @@ import { Component,Input } from '@angular/core';
   styleUrl: './summary.component.css'
 })
 export class SummaryComponent {
-  @Input() formData: any;
+   client!: Client;
+  
+  constructor(private apiService: ApiService) { 
+    apiService.getClientInfo().subscribe(client => {
+      this.client = client;
+    })
+  }
+
 }
+

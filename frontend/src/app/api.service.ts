@@ -46,7 +46,7 @@ export class ApiService {
   }
 
   public getClientInfo(): Observable<Client> {
-    return this.http.get<Client>(environment.backendClient)
+    return this.http.get<Client>(environment.backendClientInfo)
       .pipe(
         catchError(this.handleError)
       );
