@@ -1,50 +1,55 @@
 <h2>Formulaire</h2>
 <form #form="ngForm" (ngSubmit)="submitForm(form)">
-    <label>Nom:</label>
-    <input type="text" [(ngModel)]="formDataModel.nom" name="nom" required [ngClass]="{'invalid': form.submitted && form.controls['nom'].invalid}">
+  <!-- Champs du formulaire -->
+  <label>Nom:</label>
+  <input type="text" [(ngModel)]="formDataModel.nom" name="nom" required [ngClass]="{'invalid': form.submitted && form.controls['nom'].invalid}">
 
-    <label>Prénom:</label>
-    <input type="text" [(ngModel)]="formDataModel.prenom" name="prenom" required [ngClass]="{'invalid': form.submitted && form.controls['prenom'].invalid}">
+  <label>Prénom:</label>
+  <input type="text" [(ngModel)]="formDataModel.prenom" name="prenom" required [ngClass]="{'invalid': form.submitted && form.controls['prenom'].invalid}">
 
-    <label>Civilité:</label>
-    <select [(ngModel)]="formDataModel.civilite "type="text" [(ngModel)]="formDataModel.civilite" name="civilite" required [ngClass]="{'invalid': form.submitted && form.controls['civilite'].invalid}">
-        <option value="" disabled selected>Choisissez...</option>
-        <option value="homme">Homme</option>
-        <option value="femme">Femme</option>
-        <option value="autre">Autre</option>
-    </select>
+  <label>Civilité:</label>
+  <select [(ngModel)]="formDataModel.civilite" name="civilite" required [ngClass]="{'invalid': form.submitted && form.controls['civilite'].invalid}">
+    <option value="" disabled selected>Choisissez...</option>
+    <option value="homme">Homme</option>
+    <option value="femme">Femme</option>
+    <option value="autre">Autre</option>
+  </select>
 
-    <label>Adresse:</label>
-    <input type="text" [(ngModel)]="formDataModel.adresse" name="adresse" required [ngClass]="{'invalid': form.submitted && form.controls['adresse'].invalid}">
+  <label>Adresse:</label>
+  <input type="text" [(ngModel)]="formDataModel.adresse" name="adresse" required [ngClass]="{'invalid': form.submitted && form.controls['adresse'].invalid}">
 
-    <label>Code postal:</label>
-    <input type="text" [(ngModel)]="formDataModel.cp" name="cp" required [ngClass]="{'invalid': form.submitted && form.controls['cp'].invalid}">
+  <label>Code postal:</label>
+  <input type="text" [(ngModel)]="formDataModel.cp" name="cp" required [ngClass]="{'invalid': form.submitted && form.controls['cp'].invalid}">
 
-    <label>Ville:</label>
-    <input type="text" [(ngModel)]="formDataModel.ville" name="ville" required [ngClass]="{'invalid': form.submitted && form.controls['ville'].invalid}">
+  <label>Ville:</label>
+  <input type="text" [(ngModel)]="formDataModel.ville" name="ville" required [ngClass]="{'invalid': form.submitted && form.controls['ville'].invalid}">
 
-    <label>Pays:</label>
-    <input type="text" [(ngModel)]="formDataModel.pays" name="pays" required [ngClass]="{'invalid': form.submitted && form.controls['pays'].invalid}">
+  <label>Pays:</label>
+  <input type="text" [(ngModel)]="formDataModel.pays" name="pays" required [ngClass]="{'invalid': form.submitted && form.controls['pays'].invalid}">
 
-    <label>Email:</label>
-    <input type="text" [(ngModel)]="formDataModel.email" name="email" required [ngClass]="{'invalid': form.submitted && form.controls['email'].invalid}">
+  <label>Email:</label>
+  <input type="text" [(ngModel)]="formDataModel.email" name="email" required [ngClass]="{'invalid': form.submitted && form.controls['email'].invalid}">
 
-    <label>Téléphone:</label>
-    <input type="text" [(ngModel)]="formDataModel.tel" name="tel" required [ngClass]="{'invalid': form.submitted && form.controls['tel'].invalid}">
-    
-    <label>Login:</label>
-    <input type="text" [(ngModel)]="formDataModel.login" name="login" required [ngClass]="{'invalid': form.submitted && form.controls['login'].invalid}">
+  <label>Téléphone:</label>
+  <input type="text" [(ngModel)]="formDataModel.tel" name="tel" required [ngClass]="{'invalid': form.submitted && form.controls['tel'].invalid}">
 
-    <label>Mot de passe:</label>
-    <input type="password" [(ngModel)]="formDataModel.password" name="password" required [ngClass]="{'invalid': form.submitted && form.controls['password'].invalid}">
+  <label>Login:</label>
+  <input type="text" [(ngModel)]="formDataModel.login" name="login" required [ngClass]="{'invalid': form.submitted && form.controls['login'].invalid}">
 
-    <label>Confirmation mot de passe:</label>
-    <input type="password" [(ngModel)]="formDataModel.confirmPassword" name="confirmPassword" required [ngClass]="{'invalid': form.submitted && form.controls['confirmPassword'].invalid}">
+  <label>Mot de passe:</label>
+  <input type="password" [(ngModel)]="formDataModel.password" name="password" required [ngClass]="{'invalid': form.submitted && form.controls['password'].invalid}">
 
-    <div *ngIf="!passwordMatch() && form.submitted" class="error-message">
-        Les mots de passe ne correspondent pas.
-    </div>
+  <label>Confirmation mot de passe:</label>
+  <input type="password" [(ngModel)]="formDataModel.confirmPassword" name="confirmPassword" required [ngClass]="{'invalid': form.submitted && form.controls['confirmPassword'].invalid}">
 
-    <button type="submit" >Valider</button>
+  <div *ngIf="!passwordMatch() && form.submitted" class="error-message">
+    Les mots de passe ne correspondent pas.
+  </div>
+
+  <!-- Ajoute cet élément pour afficher le message d'erreur -->
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
+
+  <button type="submit">Valider</button>
 </form>
-   

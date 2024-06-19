@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders, HttpParams, HttpErrorResponse } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { Album } from './models/album';
 import { environment } from '../environments/environment';
 import { Client } from './models/client';
@@ -17,8 +18,12 @@ export class ApiService {
     if (searchTerm) {
       params = params.set('searchTerm', searchTerm);
     }
-    return this.http.get<Album[]>(environment.backendClient, { params });
+    return this.http.get<Album[]>(environment.backendClient, { params })
+      .pipe(
+        catchError(this.handleError)
+      );
   }
+
   public loginClient(email: string, password: string): Observable<Client> {
     let data: String;
     let httpOptions = {
@@ -27,12 +32,45 @@ export class ApiService {
       })
     };  
     data = 'login=' + email + '&password=' + password;
-    return this.http.post<Client>(environment.backendLoginClient, data, httpOptions);
+    return this.http.post<Client>(environment.backendLoginClient, data, httpOptions)
+      .pipe(
+        catchError(this.handleError)
+      );
   }
+
   public registerClient(client: Client): Observable<Client> {
-    return this.http.post<Client>(environment.backendRegisterClient, client);
+    return this.http.post<Client>(environment.backendRegisterClient, client)
+      .pipe(
+        catchError(this.handleError)
+      );
   }
+
   public getClientInfo(): Observable<Client> {
-    return this.http.get<Client>(environment.backendClient);
+    return this.http.get<Client>(environment.backendClient)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
+  private handleError(error: HttpErrorResponse) {
+    let errorMessage = 'An unknown error occurred!';
+    if (error.error instanceof ErrorEvent) {
+      // Erreur côté client
+      errorMessage = `Error: ${error.error.message}`;
+    } else {
+      // Erreur côté serveur
+      switch (error.status) {
+        case 409:
+          errorMessage = 'Un utilisateur avec le même login et mot de passe existe déjà.';
+          break;
+        case 400:
+          errorMessage = 'Les données fournies sont invalides.';
+          break;
+        default:
+          errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+          break;
+      }
+    }
+    return throwError(errorMessage);
   }
 }
