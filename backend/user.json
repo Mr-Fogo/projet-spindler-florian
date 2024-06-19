@@ -1,0 +1,26 @@
+[
+  {
+    "id": "1",
+    "name": "Spindler",
+    "firstname": "Florian",
+    "email": "florian@gmail.com",
+    "login": "florian",
+    "password": "aze"
+  },
+  {
+    "id": "ab41d780-3dcd-4913-a010-d30aef13ebed",
+    "nom": "spindler",
+    "prenom": "florian",
+    "email": "florian.spindler@outlook.fr",
+    "login": "romain",
+    "password": "aze"
+  },
+  {
+    "id": "4304c99b-079b-4735-bb6d-6b430c5455ec",
+    "nom": "Hamza",
+    "prenom": "Louada",
+    "email": "florian.spindler@outlook.fr",
+    "login": "hamza",
+    "password": "aze"
+  }
+]

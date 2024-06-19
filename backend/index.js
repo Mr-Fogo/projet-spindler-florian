@@ -1,5 +1,7 @@
 const express = require("express");
 const cors = require("cors");
+const { sequelize } = require("./database");
+
 
 const app  = express ();
 
@@ -22,6 +24,8 @@ app.use(express.urlencoded({ extended: true }));
 require("./routes/catalogue.routes")(app);
 require("./routes/utilisateur.routes")(app);
 
+sequelize.sync({ force : true})
+.then(()=> console.log("Database created")).catch((e)=> console.error(e));
 
 
 // set port, listen for requests
