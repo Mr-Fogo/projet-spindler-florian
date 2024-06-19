@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
-const POSTGRE_KEY = process.env.DB_CONNECTION_STRING;
-//const POSTGRE_KEY = "postgres://couille_user:1JbyKVaOkwwyliIAisldgIpJ3mvxGY2D@dpg-cppa2rtds78s73e4htug-a.frankfurt-postgres.render.com/couille"
+//const POSTGRE_KEY = process.env.POSTGRE_KEY;
+const POSTGRE_KEY = "postgres://couille_user:1JbyKVaOkwwyliIAisldgIpJ3mvxGY2D@dpg-cppa2rtds78s73e4htug-a.frankfurt-postgres.render.com/couille"
 
 
 
@@ -18,7 +18,7 @@ const albumsData = [
 //     storage: './database.sqlite',
 //     logging: true
 //   });
- //EN HAUT DE LA PAGE
+
   const sequelize = new Sequelize(POSTGRE_KEY, {
     dialect: 'postgres',
     protocol: 'postgres',

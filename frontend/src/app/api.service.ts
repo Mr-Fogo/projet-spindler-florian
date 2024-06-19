@@ -61,7 +61,7 @@ export class ApiService {
       // Erreur côté serveur
       switch (error.status) {
         case 409:
-          errorMessage = 'Un utilisateur avec le même login et mot de passe existe déjà.';
+          errorMessage = 'Un utilisateur avec le même login existe déjà.';
           break;
         case 400:
           errorMessage = 'Les données fournies sont invalides.';
